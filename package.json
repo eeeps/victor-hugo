@@ -40,5 +40,10 @@
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
     "whatwg-fetch": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-register": "^6.23.0",
+    "gulp": "^3.9.1"
   }
 }
