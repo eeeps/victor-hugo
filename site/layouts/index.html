@@ -12,4 +12,13 @@
 <li>three</li>
 </ol>
 
+<ul id="list">
+            {{ range .Data.Pages }}
+                <a href="{{ .URL }}">{{ .Title }}</a>
+            {{ end }}
+        </ul>
+
+{{ printf "href=%q" .Site.Params.cldBase | safeHTMLAttr }}
+
 {{ partial "footer" . }}
+
