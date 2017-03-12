@@ -1,8 +1,8 @@
 languageCode = "en-us"
 title = "My New Hugo Site"
 
-baseurl = "http://lecturer-consequences-10438.netlify.com/"
+baseURL = "http://lecturer-consequences-10438.netlify.com"
 
 
 [params]
-	cldBase = "http://res.cloudinary.com/eric-cloudinary/"
+	cldBase = "http://res.cloudinary.com/eric-cloudinary"
