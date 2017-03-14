@@ -1,0 +1,12 @@
+
+{{ $gravatarID := md5 ( .Get "user" ) }}
+{{ $gravatarURL := ( print .Site.Params.cldBase "/image/gravatar/f_auto,q_auto/w_auto:100:100/" $gravatarID ".jpg" ) }}
+
+{{ $sizes := "100px" }}
+
+{{ $alt := ( .Get "user" ) }}
+
+<img
+	src='{{ $gravatarURL }}'
+	sizes='{{ if .Get "sizes" }}{{ .Get "sizes" }}{{ else }}100px{{ end }}'
+	alt='{{ if .Get "alt" }}{{ .Get "alt" }}{{ else }}{{ .Get "user" }}{{ end }}' />
