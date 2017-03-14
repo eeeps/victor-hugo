@@ -1,10 +1,13 @@
 {{ $fetchURL := (print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints:400/"  .Site.BaseURL ( .Get "src" ) ) }}
 
 <figure>
-<img src='{{ printf "%s" $fetchURL }}' sizes='{{ .Get "sizes" }}' alt />
+<img
+	src="{{ $fetchURL }}"
+	sizes="{{ if .Get "sizes" }}{{ .Get "sizes" }}{{ else }}100vw{{ end }}"
+	alt="{{ if .Get "alt" }}{{ .Get "alt" }}{{ end }}" />
 <figcaption>
 <code>
-{{ printf "%s" $fetchURL }}
+{{ $fetchURL }}
 </code>
 </figcaption>
 </figure>
