@@ -1,3 +1,11 @@
+# Eric’s forked version of Victor Hugo
+
+Demonstrating Cloudinary responsive image URLs and Gravatar URLs via shortcodes.
+
+See it live: http://lecturer-consequences-10438.netlify.com
+
+---
+
 # Victor Hugo
 
 **A [Hugo](https://gohugo.io/) boilerplate for creating truly epic websites**
