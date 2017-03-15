@@ -4,22 +4,23 @@
 {{ $bytesStep := .Site.Params.breakpointsBytesStep }}
 {{ $maxImages := .Site.Params.breakpointsMaxImages }} 
 {{ $src := ( .Get "src" ) }}
+{{ $urlOne := ( print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" ) }}
+{{ $urlTwo := ( print "/" .Site.BaseURL $src ) }}
 
 <figure>
 <img
-	srcset="
-	{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" 400 "/" .Site.BaseURL $src }} 400w,
-	{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" 800 "/" .Site.BaseURL $src }} 800w,
-	{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" 1200 "/" .Site.BaseURL $src }} 1200w,
-	{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" 1600 "/" .Site.BaseURL $src }} 1600w,
-	{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" 2000 "/" .Site.BaseURL $src }} 2000w
-	"
-	src="{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" $fallbackSize "/" .Site.BaseURL $src }}"
+	srcset="{{ print $urlOne 400 $urlTwo }} 400w,
+	        {{ print $urlOne 800 $urlTwo }} 800w,
+	        {{ print $urlOne 1200 $urlTwo }} 1200w,
+	        {{ print $urlOne 1600 $urlTwo }} 1600w,
+	        {{ print $urlOne 2000 $urlTwo }} 2000w"
+	src="{{ print $urlOne $fallbackSize $urlTwo }}"
 	sizes="{{ if .Get "sizes" }}{{ .Get "sizes" }}{{ else }}{{ .Site.Params.contentImageDefaultSizes }}{{ end }}"
-	alt="{{ if .Get "alt" }}{{ .Get "alt" }}{{ end }}" />
+	alt="{{ if .Get "alt" }}{{ .Get "alt" }}{{ end }}"
+/>
 <figcaption>
 <code>
-{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" $fallbackSize "/" .Site.BaseURL $src }}
+{{ print $urlOne $fallbackSize $urlTwo }}
 </code>
 </figcaption>
 </figure>
