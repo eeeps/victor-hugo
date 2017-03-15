@@ -6,3 +6,11 @@ baseURL = "http://lecturer-consequences-10438.netlify.com"
 
 [params]
 	cldBase = "http://eric-cloudinary-res.cloudinary.com"
+	contentImageFallbackSize = "400" # in px
+	breakpointsMinWidth = "200" # in pixels
+	breakpointsMaxWidth = "2000" # in pixels
+	breakpointsBytesStep = "20" # note this is actually in kB
+	breakpointsMaxImages = "10"
+	contentImageDefaultSizes = "100vw"
+	backupBreakpoints = [ "400", "800", "1200", "1600", "2000" ] 	# I wish this worked but it doesn't yet
+

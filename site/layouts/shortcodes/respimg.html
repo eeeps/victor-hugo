@@ -1,13 +1,25 @@
-{{ $fetchURL := (print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints:400/"  .Site.BaseURL ( .Get "src" ) ) }}
+{{ $fallbackSize := .Site.Params.contentImageFallbackSize }}
+{{ $minWidth := .Site.Params.breakpointsMinWidth }}
+{{ $maxWidth := .Site.Params.breakpointsMaxWidth }}
+{{ $bytesStep := .Site.Params.breakpointsBytesStep }}
+{{ $maxImages := .Site.Params.breakpointsMaxImages }} 
+{{ $src := ( .Get "src" ) }}
 
 <figure>
 <img
-	src="{{ $fetchURL }}"
-	sizes="{{ if .Get "sizes" }}{{ .Get "sizes" }}{{ else }}100vw{{ end }}"
+	srcset="
+	{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" 400 "/" .Site.BaseURL $src }} 400w,
+	{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" 800 "/" .Site.BaseURL $src }} 800w,
+	{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" 1200 "/" .Site.BaseURL $src }} 1200w,
+	{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" 1600 "/" .Site.BaseURL $src }} 1600w,
+	{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" 2000 "/" .Site.BaseURL $src }} 2000w
+	"
+	src="{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" $fallbackSize "/" .Site.BaseURL $src }}"
+	sizes="{{ if .Get "sizes" }}{{ .Get "sizes" }}{{ else }}{{ .Site.Params.contentImageDefaultSizes }}{{ end }}"
 	alt="{{ if .Get "alt" }}{{ .Get "alt" }}{{ end }}" />
 <figcaption>
 <code>
-{{ $fetchURL }}
+{{ print .Site.Params.cldBase "/image/fetch/f_auto,q_auto/w_auto:breakpoints_" $minWidth "_" $maxWidth "_" $bytesStep "_" $maxImages ":" $fallbackSize "/" .Site.BaseURL $src }}
 </code>
 </figcaption>
 </figure>
